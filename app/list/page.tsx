@@ -7,9 +7,8 @@ const page = () => {
   const useUser = () => ({ user: null, loading: false })
   return (
     <div>
-      <div className='border'>123</div>
-      <Link href="/abc">list</Link>
-      <div>클릭</div>
+      <div className='border'>/list</div>
+      <Link href="/abc">abc로 이동</Link>
     </div>
   )
 }
