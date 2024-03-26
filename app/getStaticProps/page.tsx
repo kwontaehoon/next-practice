@@ -1,11 +1,22 @@
-import React from 'react'
+'use client'
+import { getStaticProps } from '@/getStaticProps'
+import React, { useEffect } from 'react'
 
 const page = () => {
-  return (
-    <div>
-        <div>getStaticProps</div>
-    </div>
-  )
+
+    useEffect(() => {
+        const ssgFunc = async() => {
+            const ssg = await getStaticProps();
+            console.log("ssg: ", ssg);
+        }
+        ssgFunc();
+    }, []);
+
+    return (
+        <div>
+            <div>getStaticProps</div>
+        </div>
+    )
 }
 
 export default page
