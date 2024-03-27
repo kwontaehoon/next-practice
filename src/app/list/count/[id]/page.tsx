@@ -8,7 +8,7 @@ const page = () => {
     const id = useParams().id;
 
     const { data, isLoading } = useTestQuery({userId: 1});
-    console.log("data: ", data);
+
   return (
     <div>{id}</div>
   )
