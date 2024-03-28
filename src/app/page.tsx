@@ -28,6 +28,8 @@ const page = () => {
       <Link href={"/fetching/staticProps"}>getStaticProps 이동</Link>
       <br />
       <Link href={"/fetching/staticPaths"}>getStaticPaths 이동</Link>
+      <br />
+      <Link href={"/test"}>test 이동</Link>
     </div>
   )
 }
