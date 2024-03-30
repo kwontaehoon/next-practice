@@ -28,20 +28,24 @@ const config: Config = {
           '60%': { transform: 'rotate(0.0deg)' },
           '100%': { transform: 'rotate(0.0deg)' },
         },
-        opacityOn: {
-          from: { transform: 'translateY(0px)' },
+        headerOn: {
+          from: { transform: 'translateY(0px)', opacity: '1' },
           to: { transform: 'translateY(-100px)', opacity: '0' },
         },
-        opacityOff: {
-          from: { transform: 'translateY(-100px)', opacity: '1' },
-          to: { transform: 'translateY(0px)' },
+        headerOff: {
+          from: { transform: 'translateY(-100px)', opacity: '0' },
+          to: { transform: 'translateY(0px)', opacity: '1' },
+        },
+        mainTwo: {
+          from: { transform: 'translateY(0px)' },
+          to: { transform: 'translateY(-200px)' }
         }
       },
       animation: {
-        'aa': 'wiggle 3s linear infinite',
         'wiggle': 'wave 2s linear infinite',
-        'opacityOn': 'opacityOn 2s',
-        'opacityOff': 'opacityOff 2s',
+        'headerOn': 'headerOn 2s',
+        'headerOff': 'headerOff 2s',
+        'mainTwo': 'mainTwo 1s',
       },
     },
   },

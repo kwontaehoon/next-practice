@@ -9,17 +9,14 @@ const Header = () => {
 
 
   const [scrollFlag, setScrollFlag] = useState('');
-  console.log("isScroll: ", isScroll, scrollFlag);
+  // console.log("isScroll: ", isScroll, scrollFlag);
 
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       if (currentScrollY > scroll) {
-        console.log("bb down", isScroll);
         setScrollFlag('on');
-
       } else {
-        console.log("bb up", isScroll);
         setScrollFlag('off');
         setIsScroll(true);
       }
@@ -34,7 +31,7 @@ const Header = () => {
   }, [scroll]);
 
   return (
-    <div css={[tw`border bg-white flex w-full h-16 items-center px-12 fixed`, scrollFlag == '' ? '' : scrollFlag == 'on' ? tw`animate-opacityOn` : tw`animate-opacityOff`, {animationFillMode: 'forwards'}]}>
+    <div css={[tw`border bg-white flex w-full h-16 items-center px-12 fixed`, scrollFlag == '' ? '' : scrollFlag == 'on' ? tw`animate-headerOn` : tw`animate-headerOff`, {animationFillMode: 'forwards'}]}>
       <div css={tw`flex-1`}>LOGO</div>
       <div css={tw`flex w-3/4 justify-around`}>
         <div>그룹소개</div>

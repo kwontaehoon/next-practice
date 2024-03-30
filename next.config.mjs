@@ -2,7 +2,7 @@ import withTwin from './withTwin.js';
 
 /** @type {import('next').NextConfig} */
 const nextConfig = withTwin({
-  reactStrictMode: true,
+  reactStrictMode: false,
   swcMinify: true,
   images: {
     remotePatterns: [

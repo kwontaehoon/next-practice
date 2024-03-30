@@ -22,9 +22,9 @@ time, mark, audio, video {
 	vertical-align: baseline;
 }
 
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
     display: none;
-}
+} */
 
 .swiper-pagination {
 	position: absolute;
