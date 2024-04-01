@@ -8,9 +8,11 @@ import { throttle } from 'lodash';
 
 const page = () => {
 
-  const [mainScroll, setMainScroll] = useState(window.scrollY);
+  const [scroll, setScroll] = useState(window.scrollY);
 
-  const [mainScrollCount, setMainScrollCount] = useState(0);
+  const [scrollCount, setScrollCount] = useState(0);
+
+  const [scrollState, setScrollState] = useState('');
 
   const beforeScrollY = useRef(0);
 
@@ -27,22 +29,23 @@ const page = () => {
       throttle(() => {
         const currentScrollY = window.scrollY;
         if (beforeScrollY.current < currentScrollY) {
-          setMainScrollCount(mainScrollCount+1);
+          setScrollCount(prevCount => prevCount + 1);
+          setScrollState('down');
           console.log("aa down");
         } else {
-          setMainScrollCount(mainScrollCount-1);
+          setScrollCount(prevCount => prevCount - 1);
+          setScrollState('up');
           console.log("aa up");
         }
-        //이전 스크롤값 저장
         beforeScrollY.current = currentScrollY;
       }, 300),
-    [beforeScrollY]
+    []
   )
 
   return (
     <div css={[tw`bg-white`, { width: '100px', height: '2000px' }]}>
       <First />
-      <Two mainScroll={mainScroll} mainScrollCount={mainScrollCount} />
+      <Two scroll={scroll} scrollCount={scrollCount} setScrollCount={setScrollCount} scrollState={scrollState} />
       <Three />
       <Four />
       {/* <div ref={ref} css={[tw`bg-amber-200`, { width: window.innerWidth < scroll ? '100%' : scroll , height: '200px'}]}>321</div> */}
