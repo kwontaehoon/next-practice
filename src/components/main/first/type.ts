@@ -1,4 +1,4 @@
-export type MainTwoType = {
+export type MainFirstType = {
     page: number,
     count: number,
     direction: string
@@ -6,7 +6,7 @@ export type MainTwoType = {
     // setAllScroll: React.Dispatch<React.SetStateAction<number>>;
   }
 
-export interface MainTwo {
-  allScroll: MainTwoType,
-  setAllScroll: React.Dispatch<React.SetStateAction<MainTwoType>>
+export interface MainFirst {
+  allScroll: MainFirstType,
+  setAllScroll: React.Dispatch<React.SetStateAction<MainFirstType>>
 }
