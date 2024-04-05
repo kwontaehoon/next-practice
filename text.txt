@@ -1,0 +1,37 @@
+// 스크롤 최적화 방법
+
+let timeoutId: NodeJS.Timeout | null = null;
+
+  const handleScroll = useCallback(() => {
+    if (timeoutId) {
+      clearTimeout(timeoutId);
+    }
+
+    timeoutId = setTimeout(() => {
+
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY > beforeScrollY.current) {
+        // console.log('ww 다운');
+        setAllScroll({...allScroll, count: allScroll.count+1, direction: 'down'});
+      } else if (currentScrollY < beforeScrollY.current) {
+        // console.log('ww 업');
+        if(allScroll.count == 0){
+          return;
+        }else setAllScroll({...allScroll, count: allScroll.count-1, direction: 'up'});
+      }
+
+      beforeScrollY.current = currentScrollY;
+    }, 20);
+  }, [allScroll]);
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+    };
+  }, [handleScroll, timeoutId]);

@@ -15,16 +15,6 @@ const Page: React.FC<MainTwo> = ({ allScroll, setAllScroll }) => {
     threshold: 0,
   });
 
-  useEffect(()=>{
-    if(inView){
-      setAllScroll({...allScroll, page: 2});
-    }else {
-      if(allScroll.direction == 'up'){
-        setAllScroll({...allScroll, page: 1});
-      }else setAllScroll({...allScroll, page: 3});
-    }
-  }, [inView]);
-
   return (
     <div ref={ref}
       css={[
@@ -32,7 +22,7 @@ const Page: React.FC<MainTwo> = ({ allScroll, setAllScroll }) => {
         { animationFillMode: 'forwards' }]}
     >
       <div css={[tw`flex justify-center items-center h-full`, textInView ? tw`animate-opacityOn` : tw`animate-opacityOff`, { animationFillMode: 'forwards' }]}>
-        <div css={tw`border text-3xl font-bold leading-10`}>
+        <div css={tw`text-4xl font-bold leading-10`}>
           <div css={tw`relative`}>
             <div>끊임없는 도전과,</div>
             <div css={tw`border absolute bg-amber-200 w-full h-5 bottom-0`}></div>

@@ -9,6 +9,7 @@ import { MainScrollType } from './type'
 
 const page = () => {
 
+  const containerRef = useRef(null);
   const beforeScrollY = useRef<number>(0);
 
   const [allScroll, setAllScroll] = useState<MainScrollType>({
@@ -18,22 +19,21 @@ const page = () => {
   });
   console.log('allScroll: ', allScroll, window.scrollY);
 
-  let timeoutId: NodeJS.Timeout | null = null;
-
   const handleScroll = useCallback(() => {
-    if (timeoutId) {
-      clearTimeout(timeoutId);
-    }
 
-    timeoutId = setTimeout(() => {
+    setTimeout(() => {
 
       const currentScrollY = window.scrollY;
 
       if (currentScrollY > beforeScrollY.current) {
-        // console.log('ww 다운');
+
+        console.log('ww 다운');
+       
         setAllScroll({...allScroll, count: allScroll.count+1, direction: 'down'});
       } else if (currentScrollY < beforeScrollY.current) {
-        // console.log('ww 업');
+
+        console.log('ww 업');
+
         if(allScroll.count == 0){
           return;
         }else setAllScroll({...allScroll, count: allScroll.count-1, direction: 'up'});
@@ -44,22 +44,18 @@ const page = () => {
   }, [allScroll]);
 
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-
+    window.addEventListener('wheel', handleScroll);
     return () => {
-      window.removeEventListener('scroll', handleScroll);
-      if (timeoutId) {
-        clearTimeout(timeoutId);
-      }
+      window.removeEventListener('wheel', handleScroll);
     };
-  }, [handleScroll, timeoutId]);
+  }, [handleScroll]);
 
   return (
-    <div css={[tw`bg-white`, { width: '100px' }]} >
+    <div ref={containerRef} css={[tw`bg-white`]} >
       <First allScroll={allScroll} setAllScroll={setAllScroll} />
       <Two allScroll={allScroll} setAllScroll={setAllScroll} />
       <Three allScroll={allScroll} setAllScroll={setAllScroll} />
-      <Four />
+      {/* <Four /> */}
       {/* <div ref={ref} css={[tw`bg-amber-200`, { width: window.innerWidth < scroll ? '100%' : scroll , height: '200px'}]}>321</div> */}
     </div>
   )

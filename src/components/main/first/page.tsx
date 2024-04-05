@@ -10,14 +10,8 @@ const page: React.FC<MainFirst> = ({ allScroll, setAllScroll}) => {
     threshold: 0,
   });
 
-  useEffect(()=>{
-    if(inView){
-      setAllScroll({...allScroll, page: 1});
-    }else setAllScroll({...allScroll, page: 2});
-  }, [inView]);
-
   return (
-    <div ref={ref} css={[tw`border bg-amber-300 w-screen h-screen`]}>
+    <div ref={ref} css={[tw`bg-amber-300 w-screen h-screen`]}>
       <img src='/images/ball.jpg' css={tw`w-full h-full`} />
     </div>
   )

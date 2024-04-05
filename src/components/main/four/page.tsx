@@ -1,8 +1,19 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import { useInView } from 'react-intersection-observer';
+import tw from 'twin.macro'
+import { MainFour } from './type'
 
-const page = () => {
+const page: React.FC<MainFour> = ({ allScroll, setAllScroll}) => {
+
+  const { ref, inView, entry } = useInView({
+    /* Optional options */
+    threshold: 0,
+  });
+
   return (
-    <div>page</div>
+    <div ref={ref} css={[tw`bg-amber-300 w-screen h-screen bg-amber-700`]}>
+      
+    </div>
   )
 }
 
