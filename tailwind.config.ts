@@ -43,14 +43,33 @@ const config: Config = {
         opacityOff: {
           from: { },
           to: { opacity: '0' },
-        }
+        },
+        heightOn: {
+          from: { height: '24px' },
+          to: { height: '0px' },
+          // options: { // 옵션 객체
+          //   iterations: 'infinite', // 반복 횟수
+          //   fillMode: 'forwards' // animation-fill-mode
+          // }
+        },
+        heightOff: {
+          from: { height: '0px' },
+          to: { height: '24px' },
+        },
+        heightNone: {
+          from: { height: '24px' },
+          to: { height: '48px'}
+        },
       },
       animation: {
         'wiggle': 'wave 2s linear infinite',
         'headerOn': 'headerOn 2s',
         'headerOff': 'headerOff 2s',
         'opacityOn': 'opacityOn 2s',
-        'opacityOff': 'opacityOff 2s'
+        'opacityOff': 'opacityOff 2s',
+        'heightOn': 'heightOn 1s',
+        'heightOff': 'heightOff 1s',
+        'heightNone': 'heightNone 1s',
       },
     },
   },

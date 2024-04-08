@@ -4,7 +4,9 @@ export type MainTwoType = {
     direction: string
     // allScrollCount: number;
     // setAllScroll: React.Dispatch<React.SetStateAction<number>>;
-  }
+}
+
+export type MainTwoText = boolean;
 
 export interface MainTwo {
   allScroll: MainTwoType,

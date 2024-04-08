@@ -51,7 +51,7 @@ const page = () => {
   }, [handleScroll]);
 
   return (
-    <div ref={containerRef} css={[tw`bg-white`]} >
+    <div ref={containerRef} css={[tw`bg-white`]}>
       <First allScroll={allScroll} setAllScroll={setAllScroll} />
       <Two allScroll={allScroll} setAllScroll={setAllScroll} />
       <Three allScroll={allScroll} setAllScroll={setAllScroll} />
