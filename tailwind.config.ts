@@ -45,20 +45,24 @@ const config: Config = {
           to: { opacity: '0' },
         },
         heightOn: {
-          from: { height: '24px' },
-          to: { height: '0px' },
+          from: { height: '128px' },
+          to: { height: '24px' },
           // options: { // 옵션 객체
           //   iterations: 'infinite', // 반복 횟수
           //   fillMode: 'forwards' // animation-fill-mode
           // }
         },
+        heightMiddleOn: {
+          from: { height: '24px' },
+          to: { height: '0px' },
+        },
         heightOff: {
+          from: { height: '24px' },
+          to: { height: '128px' },
+        },
+        heightMiddleOff: {
           from: { height: '0px' },
           to: { height: '24px' },
-        },
-        heightNone: {
-          from: { height: '24px' },
-          to: { height: '48px'}
         },
       },
       animation: {
@@ -67,9 +71,10 @@ const config: Config = {
         'headerOff': 'headerOff 2s',
         'opacityOn': 'opacityOn 2s',
         'opacityOff': 'opacityOff 2s',
-        'heightOn': 'heightOn 1s',
+        'heightOn': 'heightOn 0.5s',
+        'heightMiddleOn': 'heightMiddleOn 1s',
         'heightOff': 'heightOff 1s',
-        'heightNone': 'heightNone 1s',
+        'heightMiddleOff': 'heightMiddleOff 1s',
       },
     },
   },

@@ -6,7 +6,7 @@ export type MainTwoType = {
     // setAllScroll: React.Dispatch<React.SetStateAction<number>>;
 }
 
-export type MainTwoText = boolean;
+export type MainTwoText = string;
 
 export interface MainTwo {
   allScroll: MainTwoType,
