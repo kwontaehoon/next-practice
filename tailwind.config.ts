@@ -46,23 +46,23 @@ const config: Config = {
         },
         heightOn: {
           from: { height: '128px' },
-          to: { height: '24px' },
+          to: { height: '28px' },
           // options: { // 옵션 객체
           //   iterations: 'infinite', // 반복 횟수
           //   fillMode: 'forwards' // animation-fill-mode
           // }
         },
         heightMiddleOn: {
-          from: { height: '24px' },
+          from: { height: '28px' },
           to: { height: '0px' },
         },
         heightOff: {
-          from: { height: '24px' },
+          from: { height: '20px' },
           to: { height: '128px' },
         },
         heightMiddleOff: {
           from: { height: '0px' },
-          to: { height: '24px' },
+          to: { height: '28px' },
         },
       },
       animation: {
