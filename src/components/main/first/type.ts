@@ -1,7 +1,8 @@
 export type MainFirstType = {
     page: number,
     count: number,
-    direction: string
+    direction: string,
+    state: boolean
     // allScrollCount: number;
     // setAllScroll: React.Dispatch<React.SetStateAction<number>>;
   }

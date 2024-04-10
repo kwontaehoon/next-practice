@@ -9,11 +9,15 @@ import { useHorizontalScroll } from '@/utils/HorizontalScroll';
 
 const Page: React.FC<MainTwo> = ({ allScroll, setAllScroll }) => {
 
-  const horizonScrollRef = useHorizontalScroll();
-  console.log('horizonScrollRef: ', horizonScrollRef);
-
   const [textState, setTextState] = useState<MainTwoText>('none');
   console.log('textState: ', textState);
+
+  const [horizonScroll, setHorizonScroll] = useState({
+    state: false,
+    location: 0
+  });
+  console.log("horizonScroll: ", horizonScroll);
+
 
   const { ref: topRef, inView: topInView, entry: topEntry } = useInView({
     /* Optional options */
@@ -29,6 +33,7 @@ const Page: React.FC<MainTwo> = ({ allScroll, setAllScroll }) => {
     /* Optional options */
     threshold: 0,
   });
+  console.log("bottomInView: ", bottomInView);
 
   // const aa = useRef(null);
 
@@ -46,22 +51,34 @@ const Page: React.FC<MainTwo> = ({ allScroll, setAllScroll }) => {
     }
 
     // up
-    if (topInView) {
+    if (!bottomInView && topInView) {
       if (allScroll.direction == 'up') {
-        if (textState == 'bottom') {
+        if (!horizonScroll && textState == 'bottom') {
           setTextState('middle');
-        } else if (textState == 'middle') {
+        } 
+        if (textState == 'middle') {
           setTextState('none');
         }
       }
     }
 
-    if (bottomInView && textState == 'bottom') {
+    // twoPage 맨 밑에 닿았을 때
+    if (!horizonScroll.state && bottomInView && textState == 'bottom') {
       scrollPrevent(true);
       requestAnimationFrame(window.innerHeight * 1, 500);
       setTextState('bottom');
+      setHorizonScroll({...horizonScroll, state: true});
+      setAllScroll({...allScroll, state: true});
     }
   }, [allScroll]);
+
+  useEffect(()=>{
+    if(allScroll.direction == 'up' && horizonScroll.state && horizonScroll.location <= 0){
+      setTextState('middle');
+      setHorizonScroll({...horizonScroll, state: false});
+      setAllScroll({...allScroll, state: false});
+    }
+  }, [horizonScroll]);
 
   // ref를 사용하여 현재 스크롤 위치 알아내기
   // useEffect(() => {
@@ -87,13 +104,12 @@ const Page: React.FC<MainTwo> = ({ allScroll, setAllScroll }) => {
     <div
       onWheel={() => allScroll.direction == 'up' ? scrollPrevent(false) : ''}
       css={[
-        tw`w-screen bg-amber-200 relative h-screen flex flex-col justify-center items-center`,
-
+        tw`w-screen bg-amber-200 relative h-screen flex flex-col justify-center items-center`
       ]}
     >
       <div ref={topRef} css={tw`border absolute top-0`}></div>
 
-      <div ref={horizonScrollRef} css={tw`flex w-screen h-screen overflow-x-auto`}>
+      <div ref={useHorizontalScroll(horizonScroll, setHorizonScroll)} css={tw`flex w-screen h-screen overflow-x-auto`}>
         <div css={tw`flex`}>
           <div css={[tw`text-5xl font-bold flex-1 flex items-center justify-center flex-col border-4 border-amber-600 w-screen h-screen`, { lineHeight: '60px' }]}>
             {mainTwoText.map(x => {

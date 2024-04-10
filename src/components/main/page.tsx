@@ -15,11 +15,16 @@ const page = () => {
   const [allScroll, setAllScroll] = useState<MainScrollType>({
     page: 1,
     count: 0,
-    direction: ''
+    direction: '',
+    state: false
   });
   console.log('allScroll: ', allScroll, window.scrollY);
 
   const handleScroll = useCallback(() => {
+
+    if(allScroll.state){
+      document.body.style.overflow = "hidden";
+    }
 
     setTimeout(() => {
 

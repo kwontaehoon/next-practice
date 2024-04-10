@@ -14,4 +14,7 @@ export const requestAnimationFrame = (targetY: number, duration: number) => {
     };
 
     window.requestAnimationFrame(scrollStep);
+    setTimeout(() => {
+        console.log(1234);
+    }, 500);
 }

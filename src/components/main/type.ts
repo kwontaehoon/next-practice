@@ -1,5 +1,6 @@
 export type MainScrollType = {
     page: number,
     count: number,
-    direction: string
+    direction: string,
+    state: boolean
 };
