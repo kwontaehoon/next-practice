@@ -9,7 +9,7 @@ import { MainScrollType } from './type'
 
 const page = () => {
 
-  const containerRef = useRef(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const beforeScrollY = useRef<number>(0);
 
   const [allScroll, setAllScroll] = useState<MainScrollType>({

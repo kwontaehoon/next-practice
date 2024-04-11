@@ -14,7 +14,8 @@ const Page: React.FC<MainTwo> = ({ allScroll, setAllScroll }) => {
 
   const [horizonScroll, setHorizonScroll] = useState({
     state: false,
-    location: 0
+    location: 0,
+    direction: ''
   });
   console.log("horizonScroll: ", horizonScroll);
 
@@ -36,6 +37,7 @@ const Page: React.FC<MainTwo> = ({ allScroll, setAllScroll }) => {
   console.log("bottomInView: ", bottomInView);
 
   // const aa = useRef(null);
+  const horizontalScrollRef = useHorizontalScroll(horizonScroll, setHorizonScroll);
 
   useEffect(() => {
 
@@ -53,7 +55,7 @@ const Page: React.FC<MainTwo> = ({ allScroll, setAllScroll }) => {
     // up
     if (!bottomInView && topInView) {
       if (allScroll.direction == 'up') {
-        if (!horizonScroll && textState == 'bottom') {
+        if (!horizonScroll.state && textState == 'bottom') {
           setTextState('middle');
         } 
         if (textState == 'middle') {
@@ -63,7 +65,7 @@ const Page: React.FC<MainTwo> = ({ allScroll, setAllScroll }) => {
     }
 
     // twoPage 맨 밑에 닿았을 때
-    if (!horizonScroll.state && bottomInView && textState == 'bottom') {
+    if (allScroll.direction == 'down' && !horizonScroll.state && bottomInView && textState == 'bottom') {
       scrollPrevent(true);
       requestAnimationFrame(window.innerHeight * 1, 500);
       setTextState('bottom');
@@ -73,10 +75,21 @@ const Page: React.FC<MainTwo> = ({ allScroll, setAllScroll }) => {
   }, [allScroll]);
 
   useEffect(()=>{
+    console.log(123123);
+
     if(allScroll.direction == 'up' && horizonScroll.state && horizonScroll.location <= 0){
-      setTextState('middle');
       setHorizonScroll({...horizonScroll, state: false});
       setAllScroll({...allScroll, state: false});
+    }
+
+    // right
+    if(horizonScroll.direction == 'up'){
+      console.log('right');
+    }
+
+    // left
+    if(horizonScroll.direction == 'down'){
+      console.log('left');
     }
   }, [horizonScroll]);
 
@@ -109,7 +122,7 @@ const Page: React.FC<MainTwo> = ({ allScroll, setAllScroll }) => {
     >
       <div ref={topRef} css={tw`border absolute top-0`}></div>
 
-      <div ref={useHorizontalScroll(horizonScroll, setHorizonScroll)} css={tw`flex w-screen h-screen overflow-x-auto`}>
+      <div ref={horizontalScrollRef} css={tw`flex w-screen h-screen overflow-x-auto`}>
         <div css={tw`flex`}>
           <div css={[tw`text-5xl font-bold flex-1 flex items-center justify-center flex-col border-4 border-amber-600 w-screen h-screen`, { lineHeight: '60px' }]}>
             {mainTwoText.map(x => {
